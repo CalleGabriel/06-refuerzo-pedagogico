@@ -27,23 +27,49 @@ import { calcularValor, estadoUI, type ContadorConfig } from '@/domain/counter';
 export default function Home() {
   // 🔎 ¿Por qué el estado arranca en 0? ¿Qué cambiaría si empezara en otro valor?
   const [valor, setValor] = useState(0);
+  const [empanadas, setEmpanadas] = useState(0);
+  const [jugos, setJugos] = useState(0);
 
   // 🔎 ¿Qué representa cada campo? ¿Por qué `valor` viene del estado y el resto son fijos?
   const config: ContadorConfig = { valor, paso: 1, minimo: 0, maximo: 10 };
+  const configEmpanadas: ContadorConfig = { valor: empanadas, paso: 1, minimo: 0, maximo: 10 };
+  const configJugos: ContadorConfig = { valor: jugos, paso: 1, minimo: 0, maximo: 10 };
 
   // 🔎 ¿Por qué calculamos `estado` y no lo guardamos en otro useState?
   const estado = estadoUI(valor, config);
+  const estadoEmpanadas = estadoUI(empanadas, configEmpanadas);
+  const estadoJugos = estadoUI(jugos, configJugos);
 
   // 👉 Antes de implementar, revisa el TSDoc de `calcularValor` (src/domain/counter.ts):
   //    ahí está el contrato; tú escribes el cómo.
   const incrementar = () => {
-    setValor(calcularValor(config, 'incrementar'));
+    setValor((actual) => calcularValor({ ...config, valor: actual }, 'incrementar'));
   };
   const decrementar = () => {
-    setValor(calcularValor(config, 'decrementar'));
+    setValor((actual) => calcularValor({ ...config, valor: actual }, 'decrementar'));
   };
   const reiniciar = () => {
     setValor(0);
+  };
+
+  const incrementarEmpanadas = () => {
+    setEmpanadas((actual) => calcularValor({ ...configEmpanadas, valor: actual }, 'incrementar'));
+  };
+  const decrementarEmpanadas = () => {
+    setEmpanadas((actual) => calcularValor({ ...configEmpanadas, valor: actual }, 'decrementar'));
+  };
+  const reiniciarEmpanadas = () => {
+    setEmpanadas(0);
+  };
+
+  const incrementarJugos = () => {
+    setJugos((actual) => calcularValor({ ...configJugos, valor: actual }, 'incrementar'));
+  };
+  const decrementarJugos = () => {
+    setJugos((actual) => calcularValor({ ...configJugos, valor: actual }, 'decrementar'));
+  };
+  const reiniciarJugos = () => {
+    setJugos(0);
   };
 
   return (
@@ -71,8 +97,6 @@ export default function Home() {
           <BotonContador label="Reiniciar" onPress={reiniciar} variante="danger" />
         </View>
 
-        {/* 👇 TODO INTEGRADOR: agrega los contadores de Empanadas y Jugos
-            repitiendo el estado (const [.., ..] = useState(0)) y sus botones. */}
         <ContadorDisplay valor={empanadas} etiqueta="Empanadas" />
         <View style={styles.actions}>
           <BotonContador

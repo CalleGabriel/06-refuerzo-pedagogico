@@ -54,8 +54,8 @@ export interface ContadorConfig {
 export function calcularValor(config: ContadorConfig, direccion: Direccion): number {
   const delta = direccion === 'incrementar' ? config.paso : -config.paso;
   const candidato = config.valor + delta;
+
   return Math.min(config.maximo, Math.max(config.minimo, candidato));
-  return config.valor;
 }
 
 /**

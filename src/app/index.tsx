@@ -43,30 +43,30 @@ export default function Home() {
   // 👉 Antes de implementar, revisa el TSDoc de `calcularValor` (src/domain/counter.ts):
   //    ahí está el contrato; tú escribes el cómo.
   const incrementar = () => {
-    setValor((actual) => calcularValor({ ...config, valor: actual }, 'incrementar'));
+    setValor(calcularValor(config, 'incrementar'));
   };
   const decrementar = () => {
-    setValor((actual) => calcularValor({ ...config, valor: actual }, 'decrementar'));
+    setValor(calcularValor(config, 'decrementar'));
   };
   const reiniciar = () => {
     setValor(0);
   };
 
   const incrementarEmpanadas = () => {
-    setEmpanadas((actual) => calcularValor({ ...configEmpanadas, valor: actual }, 'incrementar'));
+    setEmpanadas(calcularValor(configEmpanadas, 'incrementar'));
   };
   const decrementarEmpanadas = () => {
-    setEmpanadas((actual) => calcularValor({ ...configEmpanadas, valor: actual }, 'decrementar'));
+    setEmpanadas(calcularValor(configEmpanadas, 'decrementar'));
   };
   const reiniciarEmpanadas = () => {
     setEmpanadas(0);
   };
 
   const incrementarJugos = () => {
-    setJugos((actual) => calcularValor({ ...configJugos, valor: actual }, 'incrementar'));
+    setJugos(calcularValor(configJugos, 'incrementar'));
   };
   const decrementarJugos = () => {
-    setJugos((actual) => calcularValor({ ...configJugos, valor: actual }, 'decrementar'));
+    setJugos(calcularValor(configJugos, 'decrementar'));
   };
   const reiniciarJugos = () => {
     setJugos(0);
